@@ -11,7 +11,7 @@ class ExtrafieldsPlugin(plugins.SingletonPlugin):
             'datum_erzeugung': [toolkit.get_validator('ignore_missing'), toolkit.get_converter('convert_to_extras')],
             'datum_revision': [toolkit.get_validator('ignore_missing'), toolkit.get_converter('convert_to_extras')],
             'contributorID': toolkit.get_validator('ignore_missing'), 
-            'plannedAvailability': [toolkit.get_validator('ignore_missing'), 
+            'plannedAvailability': toolkit.get_validator('ignore_missing'), 
             'politicalGeocodingLevelURI': [toolkit.get_validator('ignore_missing'), toolkit.get_converter('convert_to_extras')],
             'politicalGeocodingURI': [toolkit.get_validator('ignore_missing'), toolkit.get_converter('convert_to_extras')],
         })
