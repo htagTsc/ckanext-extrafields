@@ -6,35 +6,15 @@ class ExtrafieldsPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
 
     def _modify_package_schema(self, schema):
-        schema['resources'].update({
-            'sprache': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_to_extras')]
+        schema.update({
+            'sprache': [toolkit.get_validator('ignore_missing'), toolkit.get_converter('convert_to_extras')],
+            'datum_erzeugung': [toolkit.get_validator('ignore_missing'), toolkit.get_converter('convert_to_extras')],
+            'datum_revision': [toolkit.get_converter('convert_from_extras'), toolkit.get_validator('ignore_missing')],
+            'aktualisierungsintervall': [toolkit.get_validator('ignore_missing'), toolkit.get_converter('convert_to_extras')],
+            'referenzsystem': [toolkit.get_validator('ignore_missing'), toolkit.get_converter('convert_to_extras')],
+            'geographische_ausdehnung': [toolkit.get_validator('ignore_missing'), toolkit.get_converter('convert_to_extras')],
+            'politicalGeocodingURI': [toolkit.get_validator('ignore_missing'), toolkit.get_converter('convert_to_extras')],
         })
-        schema['resources'].update({
-            'datum_erzeugung': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_to_extras')]
-        })
-        schema['resources'].update({
-            'datum_revision': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_to_extras')]
-        })
-        schema['resources'].update({
-            'aktualisierungsintervall': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_to_extras')]
-        })
-        schema['resources'].update({
-            'referenzsystem': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_to_extras')]
-        })
-        schema['resources'].update({
-            'geographische_ausdehnung': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_to_extras')]
-        })
-        schema['resources'].update({
-            'politicalGeocodingURI': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_to_extras')]
-        })
-
         return schema
 
     def create_package_schema(self):
@@ -49,28 +29,15 @@ class ExtrafieldsPlugin(plugins.SingletonPlugin):
 
     def show_package_schema(self):
         schema = super(ExtrafieldsPlugin, self).show_package_schema()
-        schema['resources'].update({
-                'sprache' : [ tk.get_validator('ignore_missing') ]
-            })
-        schema['resources'].update({
-                'datum_erzeugung' : [ tk.get_validator('ignore_missing') ]
-            })
-        schema['resources'].update({
-                'datum_revision' : [ tk.get_validator('ignore_missing') ]
-            })
-        schema['resources'].update({
-                'aktualisierungsintervall' : [ tk.get_validator('ignore_missing') ]
-            })
-        schema['resources'].update({
-                'referenzsystem' : [ tk.get_validator('ignore_missing') ]
-            })
-        schema['resources'].update({
-                'geographische_ausdehnung' : [ tk.get_validator('ignore_missing') ]
-            })
-        schema['resources'].update({
-                'politicalGeocodingURI' : [ tk.get_validator('ignore_missing') ]
-            })
-        
+        schema.update({
+            'sprache': [toolkit.get_converter('convert_from_extras'), toolkit.get_validator('ignore_missing')],
+            'datum_erzeugung': [toolkit.get_converter('convert_from_extras'), toolkit.get_validator('ignore_missing')],
+            'datum_revision': [toolkit.get_converter('convert_from_extras'), toolkit.get_validator('ignore_missing')],
+            'aktualisierungsintervall': [toolkit.get_converter('convert_from_extras'), toolkit.get_validator('ignore_missing')],
+            'referenzsystem': [toolkit.get_converter('convert_from_extras'), toolkit.get_validator('ignore_missing')],
+            'geographische_ausdehnung': [toolkit.get_converter('convert_from_extras'), toolkit.get_validator('ignore_missing')],
+            'politicalGeocodingURI': [toolkit.get_converter('convert_from_extras'), toolkit.get_validator('ignore_missing')],
+        })
         return schema
 
     def is_fallback(self):
