@@ -30,10 +30,7 @@ class ExtrafieldsPlugin(plugins.SingletonPlugin):
             'geographische_ausdehnung': [toolkit.get_validator('ignore_missing'),
                             toolkit.get_converter('convert_to_extras')]
         })
-        schema['resources'].update({
-            'politicalGeocodingURI': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_to_extras')]
-        })
+
         return schema
 
     def create_package_schema(self):
@@ -66,9 +63,7 @@ class ExtrafieldsPlugin(plugins.SingletonPlugin):
         schema['resources'].update({
                 'geographische_ausdehnung' : [ tk.get_validator('ignore_missing') ]
             })
-        schema['resources'].update({
-                'politicalGeocodingURI' : [ tk.get_validator('ignore_missing') ]
-            })
+        
         return schema
 
     def is_fallback(self):
