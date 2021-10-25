@@ -9,4 +9,5 @@
   {{ form.input('aktualisierungsintervall', label=_('Aktualisierungsintervall'), id='field-aktualisierungsintervall', placeholder=_('Aktualisierungsintervall'), value=data.aktualisierungsintervall, error=errors.aktualisierungsintervall, classes=['control-medium']) }}
   {{ form.input('referenzsystem', label=_('Referenzsystem'), id='field-referenzsystem', placeholder=_('Referenzsystem'), value=data.referenzsystem, error=errors.referenzsystem, classes=['control-medium']) }}
   {{ form.input('geographische_ausdehnung', label=_('Geographische Ausdehnung'), id='field-geographische_ausdehnung', placeholder=_('Geographische Ausdehnung'), value=data.geographische_ausdehnung, error=errors.geographische_ausdehnung, classes=['control-medium']) }}
+  {{ form.input('politicalGeocodingURI', label=_('Administrativer Geobezug'), id='politicalGeocodingURI', placeholder=_('https://www.dcat-ap.de/def/politicalGeocoding/stateKey/20100401#05'), value=data.politicalGeocodingURI, error=errors.politicalGeocodingURI, classes=['control-medium']) }}
   {% endblock %}
