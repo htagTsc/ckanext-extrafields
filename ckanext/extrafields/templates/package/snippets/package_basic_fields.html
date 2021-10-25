@@ -3,8 +3,10 @@
   {{ form.input('sprache', label=_('Sprache'), id='field-sprache', placeholder=_('Sprache'), value=data.sprache, error=errors.sprache, classes=['control-medium']) }}
   {{ form.input('datum_erzeugung', label=_('Datum Erzeugung'), id='field-datum_erzeugung', placeholder=_('Datum Erzeugung'), value=data.datum_erzeugung, error=errors.datum_erzeugung, classes=['control-medium']) }}
   {{ form.input('datum_revision', label=_('Datum Revision'), id='field-datum_revision', placeholder=_('Datum Revision'), value=data.datum_revision, error=errors.datum_revision, classes=['control-medium']) }}
-  {{ form.input('aktualisierungsintervall', label=_('Aktualisierungsintervall'), id='field-aktualisierungsintervall', placeholder=_('Aktualisierungsintervall'), value=data.aktualisierungsintervall, error=errors.aktualisierungsintervall, classes=['control-medium']) }}
+  {{ form.input('contributorID', label=_('Datenbereitsteller ID'), id='field-contributorID', placeholder=_('http://opendata-soest.de'), value=data.contributorID, error=errors.contributorID, classes=['control-medium']) }}
   {{ form.input('plannedAvailability', label=_('Verfügbarkeitszeitsraum'), id='field-plannedAvailability', placeholder=_('http://dcat-ap.de/def/plannedAvailability/available'), value=data.plannedAvailability, error=errors.plannedAvailability, classes=['control-medium']) }}
   {{ form.input('politicalGeocodingLevelURI', label=_('Verwaltungsebene'), id='field-extras-politicalGeocodingLevelURI', placeholder=_('http://dcat-ap.de/def/politicalGeocoding/Level/municipality'), value=data.politicalGeocodingLevelURI, error=errors.politicalGeocodingLevelURI, classes=['control-medium']) }}
   {{ form.input('politicalGeocodingURI', label=_('Administrativer Geobezug'), id='field-politicalGeocodingURI', placeholder=_('https://www.dcat-ap.de/def/politicalGeocoding/regionalKey/20210831#059740040040'), value=data.politicalGeocodingURI, error=errors.politicalGeocodingURI, classes=['control-medium']) }}
 {% endblock %}
+
+dcatde:contributorID

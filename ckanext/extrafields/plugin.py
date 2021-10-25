@@ -10,9 +10,9 @@ class ExtrafieldsPlugin(plugins.SingletonPlugin):
             'sprache': [toolkit.get_validator('ignore_missing'), toolkit.get_converter('convert_to_extras')],
             'datum_erzeugung': [toolkit.get_validator('ignore_missing'), toolkit.get_converter('convert_to_extras')],
             'datum_revision': [toolkit.get_converter('convert_from_extras'), toolkit.get_validator('ignore_missing')],
-            'aktualisierungsintervall': [toolkit.get_validator('ignore_missing'), toolkit.get_converter('convert_to_extras')],
-            'referenzsystem': [toolkit.get_validator('ignore_missing'), toolkit.get_converter('convert_to_extras')],
-            'geographische_ausdehnung': [toolkit.get_validator('ignore_missing'), toolkit.get_converter('convert_to_extras')],
+            'contributorID': [toolkit.get_validator('ignore_missing'),
+            'plannedAvailability': [toolkit.get_validator('ignore_missing')],
+            'politicalGeocodingLevelURI': [toolkit.get_validator('ignore_missing'), toolkit.get_converter('convert_to_extras')],
             'politicalGeocodingURI': [toolkit.get_validator('ignore_missing'), toolkit.get_converter('convert_to_extras')],
         })
         return schema
@@ -33,9 +33,9 @@ class ExtrafieldsPlugin(plugins.SingletonPlugin):
             'sprache': [toolkit.get_converter('convert_from_extras'), toolkit.get_validator('ignore_missing')],
             'datum_erzeugung': [toolkit.get_converter('convert_from_extras'), toolkit.get_validator('ignore_missing')],
             'datum_revision': [toolkit.get_converter('convert_from_extras'), toolkit.get_validator('ignore_missing')],
-            'aktualisierungsintervall': [toolkit.get_converter('convert_from_extras'), toolkit.get_validator('ignore_missing')],
-            'referenzsystem': [toolkit.get_converter('convert_from_extras'), toolkit.get_validator('ignore_missing')],
-            'geographische_ausdehnung': [toolkit.get_converter('convert_from_extras'), toolkit.get_validator('ignore_missing')],
+            'contributorID': [toolkit.get_validator('ignore_missing')],
+            'plannedAvailability': [toolkit.get_validator('ignore_missing')],
+            'politicalGeocodingLevelURI': [toolkit.get_converter('convert_from_extras'), toolkit.get_validator('ignore_missing')],
             'politicalGeocodingURI': [toolkit.get_converter('convert_from_extras'), toolkit.get_validator('ignore_missing')],
         })
         return schema
