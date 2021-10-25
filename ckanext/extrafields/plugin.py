@@ -1,6 +1,28 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 
+def create_politicalGeocoding_codes():
+    user = toolkitk.get_action('get_site_user')({'ignore_auth': True}, {})
+    context = {'user': user['name']}
+    try:
+        data = {'id': 'politicalGeocoding_codes'}
+        toolkit.get_action('vocabulary_show')(context, data)
+    except toolkit.ObjectNotFound:
+        data = {'name': 'politicalGeocoding_codes'}
+        vocab = toolkit.get_action('vocabulary_create')(context, data)
+        for tag in (u'https://www.dcat-ap.de/def/politicalGeocoding/stateKey/20100401#05', u'Test'):
+            data = {'name': tag, 'vocabulary_id': vocab['id']}
+            toolkit.get_action('tag_create')(context, data)
+
+def politicalGeocoding_codes():
+    create_politicalGeocoding_codes()
+    try:
+        tag_list = toolkit.get_action('tag_list')
+        politicalGeocoding_codes = tag_list(data_dict={'vocabulary_id': 'politicalGeocoding_codes'})
+        return politicalGeocoding_codes
+    except toolkit.ObjectNotFound:
+        return None
+
 class ExtrafieldsPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IDatasetForm)
     plugins.implements(plugins.IConfigurer)
@@ -13,7 +35,7 @@ class ExtrafieldsPlugin(plugins.SingletonPlugin):
             'aktualisierungsintervall': [toolkit.get_validator('ignore_missing'), toolkit.get_converter('convert_to_extras')],
             'referenzsystem': [toolkit.get_validator('ignore_missing'), toolkit.get_converter('convert_to_extras')],
             'geographische_ausdehnung': [toolkit.get_validator('ignore_missing'), toolkit.get_converter('convert_to_extras')],
-            'politicalGeocodingURI': [toolkit.get_validator('ignore_missing'), toolkit.get_converter('convert_to_extras')],
+            'politicalGeocodingURI': [toolkit.get_validator('ignore_missing'), toolkit.get_converter('convert_to_extras')('conver_to_tags')('politicalGeocoding_codes')],
         })
         return schema
 
@@ -29,6 +51,7 @@ class ExtrafieldsPlugin(plugins.SingletonPlugin):
 
     def show_package_schema(self):
         schema = super(ExtrafieldsPlugin, self).show_package_schema()
+        schema['tags']['__extras'].append(toolkit.get_converter('free_tags_only'))
         schema.update({
             'sprache': [toolkit.get_converter('convert_from_extras'), toolkit.get_validator('ignore_missing')],
             'datum_erzeugung': [toolkit.get_converter('convert_from_extras'), toolkit.get_validator('ignore_missing')],
@@ -36,7 +59,7 @@ class ExtrafieldsPlugin(plugins.SingletonPlugin):
             'aktualisierungsintervall': [toolkit.get_converter('convert_from_extras'), toolkit.get_validator('ignore_missing')],
             'referenzsystem': [toolkit.get_converter('convert_from_extras'), toolkit.get_validator('ignore_missing')],
             'geographische_ausdehnung': [toolkit.get_converter('convert_from_extras'), toolkit.get_validator('ignore_missing')],
-            'politicalGeocodingURI': [toolkit.get_converter('convert_from_extras'), toolkit.get_validator('ignore_missing')],
+            'politicalGeocodingURI': [toolkit.get_converter('convert_from_extras')('convert_from_tags')('politicalGeocodingURI_codes'), toolkit.get_validator('ignore_missing')],
         })
         return schema
 
