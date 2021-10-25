@@ -1,0 +1,67 @@
+{% ckan_extends %}
+
+{% block extras %}
+  {% if pkg_dict.art_der_ressource %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Art der Ressource") }}</th>
+      <td class="dataset-details">{{ pkg_dict.art_der_ressource }}</td>
+    </tr>
+  {% endif %}
+
+  {% if pkg_dict.sprache %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Sprache") }}</th>
+      <td class="dataset-details">{{ pkg_dict.sprache }}</td>
+    </tr>
+  {% endif %}
+
+  {% if pkg_dict.struktur_der_raeumlichen_daten %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Struktur der räumlichen Daten") }}</th>
+      <td class="dataset-details">{{ pkg_dict.struktur_der_raeumlichen_daten }}</td>
+    </tr>
+  {% endif %}
+
+  {% if pkg_dict.datum_erzeugung %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Datum Erzeugung") }}</th>
+      <td class="dataset-details">{{ pkg_dict.datum_erzeugung }}</td>
+    </tr>
+  {% endif %}
+
+  {% if pkg_dict.datum_revision %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Datum Revision") }}</th>
+      <td class="dataset-details">{{ pkg_dict.datum_revision }}</td>
+    </tr>
+  {% endif %}
+
+  {% if pkg_dict.aktualisierungsintervall %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Aktualisierungsintervall") }}</th>
+      <td class="dataset-details">{{ pkg_dict.aktualisierungsintervall }}</td>
+    </tr>
+  {% endif %}
+
+  {% if pkg_dict.referenzsystem %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Referenzsystem") }}</th>
+      <td class="dataset-details">{{ pkg_dict.referenzsystem }}</td>
+    </tr>
+  {% endif %}
+
+  {% if pkg_dict.geographische_ausdehnung %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Geographische Ausdehnung") }}</th>
+      <td class="dataset-details">{{ pkg_dict.geographische_ausdehnung }}</td>
+    </tr>
+  {% endif %}
+
+  {% if pkg_dict.politicalGeocodingURI %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Administrativer Geobezug") }}</th>
+      <td class="dataset-details">{{ pkg_dict.politicalGeocodingURI }}</td>
+    </tr>
+  {% endif %}
+
+{% endblock %}
