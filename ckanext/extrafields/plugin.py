@@ -10,7 +10,7 @@ def create_contributorID_tags():
     except toolkit.ObjectNotFound:
         data = {'name': 'contributorID_tags'}
         vocab = toolkit.get_action('vocabulary_create')(context, data)
-        for tag in (u'test1', u'test2'):
+        for tag in (u'https://opendata-beispielstadt.de', u'https://opendata-beispielstadtXY.de'):
             data = {'name': tag, 'vocabulary_id': vocab['id']}
             toolkit.get_action('tag_create')(context, data)
 
