@@ -1,41 +1,6 @@
 {% ckan_extends %}
 
 {% block extras %}
-  {% if pkg_dict.art_der_ressource %}
-    <tr>
-      <th scope="row" class="dataset-label">{{ _("Art der Ressource") }}</th>
-      <td class="dataset-details">{{ pkg_dict.art_der_ressource }}</td>
-    </tr>
-  {% endif %}
-
-  {% if pkg_dict.sprache %}
-    <tr>
-      <th scope="row" class="dataset-label">{{ _("Sprache") }}</th>
-      <td class="dataset-details">{{ pkg_dict.sprache }}</td>
-    </tr>
-  {% endif %}
-
-  {% if pkg_dict.struktur_der_raeumlichen_daten %}
-    <tr>
-      <th scope="row" class="dataset-label">{{ _("Struktur der räumlichen Daten") }}</th>
-      <td class="dataset-details">{{ pkg_dict.struktur_der_raeumlichen_daten }}</td>
-    </tr>
-  {% endif %}
-
-  {% if pkg_dict.datum_erzeugung %}
-    <tr>
-      <th scope="row" class="dataset-label">{{ _("Datum Erzeugung") }}</th>
-      <td class="dataset-details">{{ pkg_dict.datum_erzeugung }}</td>
-    </tr>
-  {% endif %}
-
-  {% if pkg_dict.datum_revision %}
-    <tr>
-      <th scope="row" class="dataset-label">{{ _("Datum Revision") }}</th>
-      <td class="dataset-details">{{ pkg_dict.datum_revision }}</td>
-    </tr>
-  {% endif %}
-
   {% if pkg_dict.contributorID %}
     <tr>
       <th scope="row" class="dataset-label">{{ _("Datenbereitsteller ID") }}</th>
@@ -45,14 +10,14 @@
 
   {% if pkg_dict.plannedAvailability %}
     <tr>
-      <th scope="row" class="dataset-label">{{ _("plannedAvailability") }}</th>
+      <th scope="row" class="dataset-label">{{ _("Verfügbarkeitszeitsraum") }}</th>
       <td class="dataset-details" property="dcatde:plannedAvailability">{{ pkg_dict.plannedAvailability }}</td>
     </tr>
   {% endif %}
 
   {% if pkg_dict.politicalGeocodingLevelURI %}
     <tr>
-      <th scope="row" class="dataset-label">{{ _("politicalGeocodingLevelURI") }}</th>
+      <th scope="row" class="dataset-label">{{ _("Verwaltungsebene") }}</th>
       <td class="dataset-details" property="dcatde:politicalGeocodingLevelURI">{{ pkg_dict.politicalGeocodingLevelURI }}</td>
     </tr>
   {% endif %}
