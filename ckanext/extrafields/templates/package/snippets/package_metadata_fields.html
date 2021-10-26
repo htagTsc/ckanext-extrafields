@@ -4,3 +4,20 @@
   {% block custom_fields %}
   {% endblock %}
 #}
+
+{% block package_metadata_fields %}
+
+  <div class="control-group">
+    <label class="control-label" for="field-contributorID">{{ _("Datenbereitsteller ID") }}</label>
+    <div class="controls">
+      <select id="field-contributorID" name="contributorID" data-module="autocomplete">
+        {% for contributorID in h.contributorID_tags()  %}
+          <option value="{{ contributorID }}" {% if contributorID in data.get('contributorID', []) %}selected="selected"{% endif %}>{{ contributorID }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  {{ super() }}
+
+{% endblock %}

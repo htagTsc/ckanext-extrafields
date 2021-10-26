@@ -1,14 +1,43 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 
+def create_contributorID_tags():
+    user = toolkit.get_action('get_site_user')({'ignore_auth': True}, {})
+    context = {'user': user['name']}
+    try:
+        data = {'id': 'contributorID_tags'}
+        toolkit.get_action('vocabulary_show')(context, data)
+    except toolkit.ObjectNotFound:
+        data = {'name': 'contributorID_tags'}
+        vocab = toolkit.get_action('vocabulary_create')(context, data)
+        for tag in (u'test1', u'test2'):
+            data = {'name': tag, 'vocabulary_id': vocab['id']}
+            toolkit.get_action('tag_create')(context, data)
+
+def contributorID_tags():
+    create_contributorID_tags()
+    try:
+        tag_list = toolkit.get_action('tag_list')
+        contributorID_tags = tag_list(data_dict={'vocabulary_id': 'contributorID_tags'})
+        return contributorID_tags
+    except toolkit.ObjectNotFound:
+        return None
+
 class ExtrafieldsPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     plugins.implements(plugins.IDatasetForm)
     plugins.implements(plugins.IConfigurer)
+    plugins.implements(plugins.ITemplateHelpers)
+
+    def get_helpers(self):
+        return {
+            'contributorID_tags': contributorID_tags
+            }
+
 
     def _modify_package_schema(self, schema):
         schema.update({
             'contributorID': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_to_extras')]
+                            toolkit.get_converter('convert_to_extras')('contributorID_tags')]
         })
         schema.update({
             'plannedAvailability': [toolkit.get_validator('ignore_missing'),
@@ -52,6 +81,13 @@ class ExtrafieldsPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
     def show_package_schema(self):
         schema = super(ExtrafieldsPlugin, self).show_package_schema()
+        
+        schema['tags']['__extras'].append(toolkit.get_converter('free_tags_only'))
+        schema.update({
+            'contributorID': [
+                tk.get_converter('convert_from_tags')('contributorID_tags'),
+                tk.get_validator('ignore_missing')]
+        })
         schema.update({
             'contributorID': [toolkit.get_converter('convert_from_extras'),
                 toolkit.get_validator('ignore_missing')]
