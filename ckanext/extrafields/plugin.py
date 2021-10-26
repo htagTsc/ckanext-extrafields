@@ -10,9 +10,70 @@ def create_contributorID_tags():
     except toolkit.ObjectNotFound:
         data = {'name': 'contributorID_tags'}
         vocab = toolkit.get_action('vocabulary_create')(context, data)
-        for tag in (u'https://opendata-beispielstadt.de', u'https://opendata-beispielstadtXY.de'):
+        for tag in (u'https://opendata-beispielstadt.de'):
             data = {'name': tag, 'vocabulary_id': vocab['id']}
             toolkit.get_action('tag_create')(context, data)
+
+def create_politicalGeocodingURI_tags():
+    user = toolkit.get_action('get_site_user')({'ignore_auth': True}, {})
+    context = {'user': user['name']}
+    try:
+        data = {'id': 'politicalGeocodingURI_tags'}
+        toolkit.get_action('vocabulary_show')(context, data)
+    except toolkit.ObjectNotFound:
+        data = {'name': 'politicalGeocodingURI_tags'}
+        vocab = toolkit.get_action('vocabulary_create')(context, data)
+        for tag in (u'https://www.dcat-ap.de/def/politicalGeocoding/regionalKey/20210831#059740040040', u' '):
+            data = {'name': tag, 'vocabulary_id': vocab['id']}
+            toolkit.get_action('tag_create')(context, data)
+
+def create_plannedAvailability_tags():
+    user = toolkit.get_action('get_site_user')({'ignore_auth': True}, {})
+    context = {'user': user['name']}
+    try:
+        data = {'id': 'plannedAvailability_tags'}
+        toolkit.get_action('vocabulary_show')(context, data)
+    except toolkit.ObjectNotFound:
+        data = {'name': 'plannedAvailability_tags'}
+        vocab = toolkit.get_action('vocabulary_create')(context, data)
+        for tag in (u'http://dcat-ap.de/def/plannedAvailability/stable', u'http://dcat-ap.de/def/plannedAvailability/available', u'http://dcat-ap.de/def/plannedAvailability/temporary'):
+            data = {'name': tag, 'vocabulary_id': vocab['id']}
+            toolkit.get_action('tag_create')(context, data)
+
+def create_politicalGeocodingLevelURI_tags():
+    user = toolkit.get_action('get_site_user')({'ignore_auth': True}, {})
+    context = {'user': user['name']}
+    try:
+        data = {'id': 'politicalGeocodingLevelURI_tags'}
+        toolkit.get_action('vocabulary_show')(context, data)
+    except toolkit.ObjectNotFound:
+        data = {'name': 'politicalGeocodingLevelURI_tags'}
+        vocab = toolkit.get_action('vocabulary_create')(context, data)
+        for tag in (u'http://dcat-ap.de/def/politicalGeocoding/Level/municipality', u' '):
+            data = {'name': tag, 'vocabulary_id': vocab['id']}
+            toolkit.get_action('tag_create')(context, data)
+
+def create_licenseAttributionByText_tags():
+    user = toolkit.get_action('get_site_user')({'ignore_auth': True}, {})
+    context = {'user': user['name']}
+    try:
+        data = {'id': 'licenseAttributionByText_tags'}
+        toolkit.get_action('vocabulary_show')(context, data)
+    except toolkit.ObjectNotFound:
+        data = {'name': 'licenseAttributionByText_tags'}
+        vocab = toolkit.get_action('vocabulary_create')(context, data)
+        for tag in (u' ', u'Die Daten wurden mit freundlicher Unterstützung der Beispielstadt bereitgestellt.'):
+            data = {'name': tag, 'vocabulary_id': vocab['id']}
+            toolkit.get_action('tag_create')(context, data)
+
+def plannedAvailability_tags():
+    create_plannedAvailability_tags()
+    try:
+        tag_list = toolkit.get_action('tag_list')
+        plannedAvailability_tags = tag_list(data_dict={'vocabulary_id': 'plannedAvailability_tags'})
+        return plannedAvailability_tags
+    except toolkit.ObjectNotFound:
+        return None
 
 def contributorID_tags():
     create_contributorID_tags()
@@ -23,6 +84,33 @@ def contributorID_tags():
     except toolkit.ObjectNotFound:
         return None
 
+def politicalGeocodingLevelURI_tags():
+    create_politicalGeocodingLevelURI_tags()
+    try:
+        tag_list = toolkit.get_action('tag_list')
+        politicalGeocodingLevelURI_tags = tag_list(data_dict={'vocabulary_id': 'politicalGeocodingLevelURI_tags'})
+        return politicalGeocodingLevelURI_tags
+    except toolkit.ObjectNotFound:
+        return None
+
+def politicalGeocodingURI_tags():
+    create_politicalGeocodingURI_tags()
+    try:
+        tag_list = toolkit.get_action('tag_list')
+        politicalGeocodingURI_tags = tag_list(data_dict={'vocabulary_id': 'politicalGeocodingURI_tags'})
+        return politicalGeocodingURI_tags
+    except toolkit.ObjectNotFound:
+        return None
+
+def licenseAttributionByText_tags():
+    create_licenseAttributionByText_tags()
+    try:
+        tag_list = toolkit.get_action('tag_list')
+        licenseAttributionByText_tags = tag_list(data_dict={'vocabulary_id': 'licenseAttributionByText_tags'})
+        return licenseAttributionByText_tags
+    except toolkit.ObjectNotFound:
+        return None
+
 class ExtrafieldsPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     plugins.implements(plugins.IDatasetForm)
     plugins.implements(plugins.IConfigurer)
@@ -30,26 +118,30 @@ class ExtrafieldsPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
     def get_helpers(self):
         return {
-            'contributorID_tags': contributorID_tags
+            'contributorID_tags': contributorID_tags,
+            'plannedAvailability_tags' : plannedAvailability_tags,
+            'politicalGeocodingLevelURI_tags' : politicalGeocodingLevelURI_tags,
+            'politicalGeocodingURI_tags' : politicalGeocodingURI_tags,
+            'licenseAttributionByText_tags' : licenseAttributionByText_tags
             }
 
 
     def _modify_package_schema(self, schema):
         schema.update({
             'contributorID': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_to_extras')('contributorID_tags')]
+                            toolkit.get_converter('convert_to_tags')('contributorID_tags')]
         })
         schema.update({
             'plannedAvailability': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_to_extras')]
+                            toolkit.get_converter('convert_to_tags')('plannedAvailability_tags')]
         })
         schema.update({
             'politicalGeocodingLevelURI': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_to_extras')]
+                            toolkit.get_converter('convert_to_tags')('politicalGeocodingLevelURI_tags')]
         })
         schema.update({
             'politicalGeocodingURI': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_to_extras')]
+                            toolkit.get_converter('convert_to_tags')('politicalGeocodingURI_tags')]
         })
         schema.update({
             'geocodingDescription': [toolkit.get_validator('ignore_missing'),
@@ -57,7 +149,7 @@ class ExtrafieldsPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
         })
         schema.update({
             'licenseAttributionByText': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_to_extras')]
+                            toolkit.get_converter('convert_to_tags')('licenseAttributionByText_tags')]
         })
         schema.update({
             'startDate': [toolkit.get_validator('ignore_missing'),
@@ -65,6 +157,10 @@ class ExtrafieldsPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
         })
         schema.update({
             'endDate': [toolkit.get_validator('ignore_missing'),
+                            toolkit.get_converter('convert_to_extras')]
+        })
+        schema.update({
+            'geometry': [toolkit.get_validator('ignore_missing'),
                             toolkit.get_converter('convert_to_extras')]
         })
         return schema
@@ -88,14 +184,12 @@ class ExtrafieldsPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
                 tk.get_converter('convert_from_tags')('contributorID_tags'),
                 tk.get_validator('ignore_missing')]
         })
+        schema['tags']['__extras'].append(toolkit.get_converter('free_tags_only'))
         schema.update({
-            'contributorID': [toolkit.get_converter('convert_from_extras'),
-                toolkit.get_validator('ignore_missing')]
-            })
-        schema.update({
-            'plannedAvailability': [toolkit.get_converter('convert_from_extras'),
-                toolkit.get_validator('ignore_missing')]
-            })
+            'plannedAvailability': [
+                tk.get_converter('convert_from_tags')('plannedAvailability_tags'),
+                tk.get_validator('ignore_missing')]
+        })
         schema.update({
             'startDate': [toolkit.get_converter('convert_from_extras'),
                 toolkit.get_validator('ignore_missing')]
@@ -104,21 +198,31 @@ class ExtrafieldsPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
             'endDate': [toolkit.get_converter('convert_from_extras'),
                 toolkit.get_validator('ignore_missing')]
         })
+        schema['tags']['__extras'].append(toolkit.get_converter('free_tags_only'))
         schema.update({
-            'politicalGeocodingLevelURI': [toolkit.get_converter('convert_from_extras'),
-                toolkit.get_validator('ignore_missing')]
-            })
+            'politicalGeocodingLevelURI': [
+                tk.get_converter('convert_from_tags')('politicalGeocodingLevelURI_tags'),
+                tk.get_validator('ignore_missing')]
+        })
+        schema['tags']['__extras'].append(toolkit.get_converter('free_tags_only'))
         schema.update({
-            'politicalGeocodingURI': [toolkit.get_converter('convert_from_extras'),
-                toolkit.get_validator('ignore_missing')]
-            })
+            'politicalGeocodingURI': [
+                tk.get_converter('convert_from_tags')('politicalGeocodingURI_tags'),
+                tk.get_validator('ignore_missing')]
+        })
         schema.update({
             'geocodingDescription': [toolkit.get_converter('convert_from_extras'),
                 toolkit.get_validator('ignore_missing')]
             })
         schema.update({
-            'licenseAttributionByText': [toolkit.get_converter('convert_from_extras'),
+            'geometry': [toolkit.get_converter('convert_from_extras'),
                 toolkit.get_validator('ignore_missing')]
+            })
+        schema['tags']['__extras'].append(toolkit.get_converter('free_tags_only'))
+        schema.update({
+            'licenseAttributionByText': [
+                tk.get_converter('convert_from_tags')('licenseAttributionByText_tags'),
+                tk.get_validator('ignore_missing')]
         })
         return schema
 

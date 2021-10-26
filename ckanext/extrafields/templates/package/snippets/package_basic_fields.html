@@ -1,11 +1,1 @@
 {% ckan_extends %}
-{% block package_basic_fields_custom %}
-{{ super() }}
-  {{ form.input('plannedAvailability', label=_('Verfügbarkeitszeitsraum'), id='field-plannedAvailability', placeholder=_('http://dcat-ap.de/def/plannedAvailability/available'), value=data.plannedAvailability, error=errors.plannedAvailability, classes=['control-medium']) }}
-  {{ form.input('politicalGeocodingLevelURI', label=_('Verwaltungsebene'), id='field-politicalGeocodingLevelURI', placeholder=_('http://dcat-ap.de/def/politicalGeocoding/Level/municipality'), value=data.politicalGeocodingLevelURI, error=errors.politicalGeocodingLevelURI, classes=['control-medium']) }}
-  {{ form.input('politicalGeocodingURI', label=_('Gemeindeschlüssel'), id='field-politicalGeocodingURI', placeholder=_('https://www.dcat-ap.de/def/politicalGeocoding/regionalKey/20210831#059740040040'), value=data.politicalGeocodingURI, error=errors.politicalGeocodingURI, classes=['control-medium']) }}
-  {{ form.input('geocodingDescription', label=_('Fachlicher Geobezug'), id='field-geocodingDescription', placeholder=_('Freitext: z.B. Wahlkreise der Stadt xy'), value=data.geocodingDescription, error=errors.geocodingDescription, classes=['control-medium']) }}
-  {{ form.input('licenseAttributionByText', label=_('Lizenz Attribution'), id='field-licenseAttributionByText', placeholder=_('Optional, falls eine Lizenz mit Namensnennung genutzt wird'), value=data.licenseAttributionByText, error=errors.licenseAttributionByText, classes=['control-medium']) }}
-  {{ form.input('startDate', label=_('Startdatum Datensatz'), id='field-startDate', placeholder=_('Optional, Startdatum des Datensatzes: YYYY-MM-DDT00:00:00 z.B. 2021-03-23T12:00:00'), value=data.startDate, error=errors.startDate, classes=['control-medium']) }}
-  {{ form.input('endDate', label=_('Enddatum Datensatz'), id='field-endDate', placeholder=_('Optional, Startdatum des Datensatzes: YYYY-MM-DDT00:00:00 z.B. 2021-05-30T23:59:59'), value=data.endDate, error=errors.endDate, classes=['control-medium']) }}
-{% endblock %}

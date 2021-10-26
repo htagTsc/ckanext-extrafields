@@ -38,7 +38,7 @@
 
   {% if pkg_dict.licenseAttributionByText %}
   <tr>
-    <th scope="row" class="dataset-label">{{ _("Lizenz Attribution") }}</th>
+    <th scope="row" class="dataset-label">{{ _("Lizenz Namensnennung") }}</th>
     <td class="dataset-details" property="dcatde:licenseAttributionByText">{{ pkg_dict.licenseAttributionByText }}</td>
   </tr>
   {% endif %}
@@ -54,6 +54,13 @@
   <tr>
     <th scope="row" class="dataset-label">{{ _("Enddatum Datensatz") }}</th>
     <td class="dataset-details" property="schema:endDate">{{ pkg_dict.endDate }}</td>
+  </tr>
+  {% endif %}
+
+  {% if pkg_dict.geometry %}
+  <tr>
+    <th scope="row" class="dataset-label">{{ _("Geographische Ausdehnung") }}</th>
+    <td class="dataset-details" property="locn:geometry">{{ pkg_dict.geometry }}</td>
   </tr>
   {% endif %}
 
