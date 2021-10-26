@@ -10,7 +10,7 @@ def create_contributorID_tags():
     except toolkit.ObjectNotFound:
         data = {'name': 'contributorID_tags'}
         vocab = toolkit.get_action('vocabulary_create')(context, data)
-        for tag in (u'https://opendata-beispielstadt.de'):
+        for tag in (u'Beispielstadt_ID'):
             data = {'name': tag, 'vocabulary_id': vocab['id']}
             toolkit.get_action('tag_create')(context, data)
 
@@ -23,7 +23,7 @@ def create_politicalGeocodingURI_tags():
     except toolkit.ObjectNotFound:
         data = {'name': 'politicalGeocodingURI_tags'}
         vocab = toolkit.get_action('vocabulary_create')(context, data)
-        for tag in (u'https://www.dcat-ap.de/def/politicalGeocoding/regionalKey/20210831#059740040040', u' '):
+        for tag in (u'Beispielstadt'):
             data = {'name': tag, 'vocabulary_id': vocab['id']}
             toolkit.get_action('tag_create')(context, data)
 
@@ -36,7 +36,7 @@ def create_plannedAvailability_tags():
     except toolkit.ObjectNotFound:
         data = {'name': 'plannedAvailability_tags'}
         vocab = toolkit.get_action('vocabulary_create')(context, data)
-        for tag in (u'http://dcat-ap.de/def/plannedAvailability/stable', u'http://dcat-ap.de/def/plannedAvailability/available', u'http://dcat-ap.de/def/plannedAvailability/temporary'):
+        for tag in (u'Verfügbar'):
             data = {'name': tag, 'vocabulary_id': vocab['id']}
             toolkit.get_action('tag_create')(context, data)
 
@@ -49,7 +49,7 @@ def create_politicalGeocodingLevelURI_tags():
     except toolkit.ObjectNotFound:
         data = {'name': 'politicalGeocodingLevelURI_tags'}
         vocab = toolkit.get_action('vocabulary_create')(context, data)
-        for tag in (u'http://dcat-ap.de/def/politicalGeocoding/Level/municipality', u' '):
+        for tag in (u'Kommune'):
             data = {'name': tag, 'vocabulary_id': vocab['id']}
             toolkit.get_action('tag_create')(context, data)
 
