@@ -17,7 +17,7 @@
 
   {% if pkg_dict.politicalGeocodingLevelURI %}
     <tr>
-      <th scope="row" class="dataset-label">{{ _("Verwaltungsebene") }}</th>
+      <th scope="row" class="dataset-label">{{ _("Verwaltungsschlüssel") }}</th>
       <td class="dataset-details" property="dcatde:politicalGeocodingLevelURI">{{ pkg_dict.politicalGeocodingLevelURI }}</td>
     </tr>
   {% endif %}
@@ -28,5 +28,35 @@
       <td class="dataset-details" property="dcatde:politicalGeocodingURI">{{ pkg_dict.politicalGeocodingURI }}</td>
     </tr>
   {% endif %}
+
+  {% if pkg_dict.geocodingDescription %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Fachlicher Geobezug") }}</th>
+      <td class="dataset-details" property="dcatde:geocodingDescription">{{ pkg_dict.politicalGeocodingURI }}</td>
+    </tr>
+  {% endif %}
+
+  {% if pkg_dict.licenseAttributionByText %}
+  <tr>
+    <th scope="row" class="dataset-label">{{ _("Lizenz Attribution") }}</th>
+    <td class="dataset-details" property="dcatde:licenseAttributionByText">{{ pkg_dict.licenseAttributionByText }}</td>
+  </tr>
+  {% endif %}
+
+  {% if pkg_dict.startDate %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Startdatum Datensatz") }}</th>
+      <td class="dataset-details" property="schema:startDate">{{ pkg_dict.startDate }}</td>
+    </tr>
+  {% endif %}
+
+  {% if pkg_dict.endDate %}
+  <tr>
+    <th scope="row" class="dataset-label">{{ _("Enddatum Datensatz") }}</th>
+    <td class="dataset-details" property="schema:endDate">{{ pkg_dict.endDate }}</td>
+  </tr>
+  {% endif %}
+
+  
 
 {% endblock %}

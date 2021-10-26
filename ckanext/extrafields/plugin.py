@@ -22,6 +22,22 @@ class ExtrafieldsPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
             'politicalGeocodingURI': [toolkit.get_validator('ignore_missing'),
                             toolkit.get_converter('convert_to_extras')]
         })
+        schema.update({
+            'geocodingDescription': [toolkit.get_validator('ignore_missing'),
+                            toolkit.get_converter('convert_to_extras')]
+        })
+        schema.update({
+            'licenseAttributionByText': [toolkit.get_validator('ignore_missing'),
+                            toolkit.get_converter('convert_to_extras')]
+        })
+        schema.update({
+            'startDate': [toolkit.get_validator('ignore_missing'),
+                            toolkit.get_converter('convert_to_extras')]
+        })
+        schema.update({
+            'endDate': [toolkit.get_validator('ignore_missing'),
+                            toolkit.get_converter('convert_to_extras')]
+        })
         return schema
 
     def create_package_schema(self):
@@ -45,6 +61,14 @@ class ExtrafieldsPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
                 toolkit.get_validator('ignore_missing')]
             })
         schema.update({
+            'startDate': [toolkit.get_converter('convert_from_extras'),
+                toolkit.get_validator('ignore_missing')]
+        })
+        schema.update({
+            'endDate': [toolkit.get_converter('convert_from_extras'),
+                toolkit.get_validator('ignore_missing')]
+        })
+        schema.update({
             'politicalGeocodingLevelURI': [toolkit.get_converter('convert_from_extras'),
                 toolkit.get_validator('ignore_missing')]
             })
@@ -52,6 +76,14 @@ class ExtrafieldsPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
             'politicalGeocodingURI': [toolkit.get_converter('convert_from_extras'),
                 toolkit.get_validator('ignore_missing')]
             })
+        schema.update({
+            'geocodingDescription': [toolkit.get_converter('convert_from_extras'),
+                toolkit.get_validator('ignore_missing')]
+            })
+        schema.update({
+            'licenseAttributionByText': [toolkit.get_converter('convert_from_extras'),
+                toolkit.get_validator('ignore_missing')]
+        })
         return schema
 
     def is_fallback(self):
