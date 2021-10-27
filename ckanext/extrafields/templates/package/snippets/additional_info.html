@@ -1,46 +1,11 @@
 {% ckan_extends %}
 
 {% block extras %}
-  {% if pkg_dict.contributorID %}
-    <tr>
-      <th scope="row" class="dataset-label">{{ _("Datenbereitsteller ID") }}</th>
-      <td class="dataset-details" property="dcatde:contributorID">{{ pkg_dict.contributorID }}</td>
-    </tr>
-  {% endif %}
-
-  {% if pkg_dict.plannedAvailability %}
-    <tr>
-      <th scope="row" class="dataset-label">{{ _("Verfügbarkeitszeitsraum") }}</th>
-      <td class="dataset-details" property="dcatde:plannedAvailability">{{ pkg_dict.plannedAvailability }}</td>
-    </tr>
-  {% endif %}
-
-  {% if pkg_dict.politicalGeocodingLevelURI %}
-    <tr>
-      <th scope="row" class="dataset-label">{{ _("Verwaltungsschlüssel") }}</th>
-      <td class="dataset-details" property="dcatde:politicalGeocodingLevelURI">{{ pkg_dict.politicalGeocodingLevelURI }}</td>
-    </tr>
-  {% endif %}
-
-  {% if pkg_dict.politicalGeocodingURI %}
-    <tr>
-      <th scope="row" class="dataset-label">{{ _("Gemeindeschlüssel") }}</th>
-      <td class="dataset-details" property="dcatde:politicalGeocodingURI">{{ pkg_dict.politicalGeocodingURI }}</td>
-    </tr>
-  {% endif %}
-
-  {% if pkg_dict.geocodingDescription %}
+    {% if pkg_dict.geocodingDescription %}
     <tr>
       <th scope="row" class="dataset-label">{{ _("Fachlicher Geobezug") }}</th>
       <td class="dataset-details" property="dcatde:geocodingDescription">{{ pkg_dict.geocodingDescription }}</td>
     </tr>
-  {% endif %}
-
-  {% if pkg_dict.licenseAttributionByText %}
-  <tr>
-    <th scope="row" class="dataset-label">{{ _("Lizenz Namensnennung") }}</th>
-    <td class="dataset-details" property="dcatde:licenseAttributionByText">{{ pkg_dict.licenseAttributionByText }}</td>
-  </tr>
   {% endif %}
 
   {% if pkg_dict.startDate %}

@@ -40,19 +40,6 @@ def create_plannedAvailability_tags():
             data = {'name': tag, 'vocabulary_id': vocab['id']}
             toolkit.get_action('tag_create')(context, data)
 
-def create_politicalGeocodingLevelURI_tags():
-    user = toolkit.get_action('get_site_user')({'ignore_auth': True}, {})
-    context = {'user': user['name']}
-    try:
-        data = {'id': 'politicalGeocodingLevelURI_tags'}
-        toolkit.get_action('vocabulary_show')(context, data)
-    except toolkit.ObjectNotFound:
-        data = {'name': 'politicalGeocodingLevelURI_tags'}
-        vocab = toolkit.get_action('vocabulary_create')(context, data)
-        for tag in (u'Kommune', u'  '):
-            data = {'name': tag, 'vocabulary_id': vocab['id']}
-            toolkit.get_action('tag_create')(context, data)
-
 def create_licenseAttributionByText_tags():
     user = toolkit.get_action('get_site_user')({'ignore_auth': True}, {})
     context = {'user': user['name']}
@@ -62,7 +49,7 @@ def create_licenseAttributionByText_tags():
     except toolkit.ObjectNotFound:
         data = {'name': 'licenseAttributionByText_tags'}
         vocab = toolkit.get_action('vocabulary_create')(context, data)
-        for tag in (u'Die Daten wurden mit freundlicher Unterstützung der Beispielstadt bereitgestellt.', u'  '):
+        for tag in (u'Keine Namensnennung', u'Die Daten wurden mit freundlicher Unterstützung der Beispielstadt bereitgestellt.'):
             data = {'name': tag, 'vocabulary_id': vocab['id']}
             toolkit.get_action('tag_create')(context, data)
 
@@ -81,15 +68,6 @@ def contributorID_tags():
         tag_list = toolkit.get_action('tag_list')
         contributorID_tags = tag_list(data_dict={'vocabulary_id': 'contributorID_tags'})
         return contributorID_tags
-    except toolkit.ObjectNotFound:
-        return None
-
-def politicalGeocodingLevelURI_tags():
-    create_politicalGeocodingLevelURI_tags()
-    try:
-        tag_list = toolkit.get_action('tag_list')
-        politicalGeocodingLevelURI_tags = tag_list(data_dict={'vocabulary_id': 'politicalGeocodingLevelURI_tags'})
-        return politicalGeocodingLevelURI_tags
     except toolkit.ObjectNotFound:
         return None
 
@@ -137,7 +115,7 @@ class ExtrafieldsPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
         })
         schema.update({
             'politicalGeocodingLevelURI': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_to_tags')('politicalGeocodingLevelURI_tags')]
+                            toolkit.get_converter('convert_to_extras')]
         })
         schema.update({
             'politicalGeocodingURI': [toolkit.get_validator('ignore_missing'),
@@ -198,10 +176,9 @@ class ExtrafieldsPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
             'endDate': [toolkit.get_converter('convert_from_extras'),
                 toolkit.get_validator('ignore_missing')]
         })
-        schema['tags']['__extras'].append(toolkit.get_converter('free_tags_only'))
         schema.update({
             'politicalGeocodingLevelURI': [
-                toolkit.get_converter('convert_from_tags')('politicalGeocodingLevelURI_tags'),
+                toolkit.get_converter('convert_from_extras'),
                 toolkit.get_validator('ignore_missing')]
         })
         schema['tags']['__extras'].append(toolkit.get_converter('free_tags_only'))
