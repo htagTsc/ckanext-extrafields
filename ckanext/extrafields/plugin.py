@@ -181,14 +181,14 @@ class ExtrafieldsPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
         schema['tags']['__extras'].append(toolkit.get_converter('free_tags_only'))
         schema.update({
             'contributorID': [
-                tk.get_converter('convert_from_tags')('contributorID_tags'),
-                tk.get_validator('ignore_missing')]
+                toolkit.get_converter('convert_from_tags')('contributorID_tags'),
+                toolkit.get_validator('ignore_missing')]
         })
         schema['tags']['__extras'].append(toolkit.get_converter('free_tags_only'))
         schema.update({
             'plannedAvailability': [
-                tk.get_converter('convert_from_tags')('plannedAvailability_tags'),
-                tk.get_validator('ignore_missing')]
+                toolkit.get_converter('convert_from_tags')('plannedAvailability_tags'),
+                toolkit.get_validator('ignore_missing')]
         })
         schema.update({
             'startDate': [toolkit.get_converter('convert_from_extras'),
@@ -201,14 +201,14 @@ class ExtrafieldsPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
         schema['tags']['__extras'].append(toolkit.get_converter('free_tags_only'))
         schema.update({
             'politicalGeocodingLevelURI': [
-                tk.get_converter('convert_from_tags')('politicalGeocodingLevelURI_tags'),
-                tk.get_validator('ignore_missing')]
+                toolkit.get_converter('convert_from_tags')('politicalGeocodingLevelURI_tags'),
+                toolkit.get_validator('ignore_missing')]
         })
         schema['tags']['__extras'].append(toolkit.get_converter('free_tags_only'))
         schema.update({
             'politicalGeocodingURI': [
-                tk.get_converter('convert_from_tags')('politicalGeocodingURI_tags'),
-                tk.get_validator('ignore_missing')]
+                toolkit.get_converter('convert_from_tags')('politicalGeocodingURI_tags'),
+                toolkit.get_validator('ignore_missing')]
         })
         schema.update({
             'geocodingDescription': [toolkit.get_converter('convert_from_extras'),
@@ -221,8 +221,8 @@ class ExtrafieldsPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
         schema['tags']['__extras'].append(toolkit.get_converter('free_tags_only'))
         schema.update({
             'licenseAttributionByText': [
-                tk.get_converter('convert_from_tags')('licenseAttributionByText_tags'),
-                tk.get_validator('ignore_missing')]
+                toolkit.get_converter('convert_from_tags')('licenseAttributionByText_tags'),
+                toolkit.get_validator('ignore_missing')]
         })
         return schema
 
