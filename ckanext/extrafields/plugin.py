@@ -4,7 +4,6 @@ import ckan.plugins.toolkit as toolkit
 class ExtrafieldsPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     plugins.implements(plugins.IDatasetForm)
     plugins.implements(plugins.IConfigurer)
-    plugins.implements(plugins.ITemplateHelpers)
 
     def _modify_package_schema(self, schema):
         schema.update({
