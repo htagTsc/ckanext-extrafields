@@ -12,7 +12,7 @@
     <div class="controls">
       <select id="field-contributorID" name="contributorID" data-module="autocomplete">
         {% for contributorID in h.contributorID_tags()  %}
-          <option value="{{ contributorID }}" {% if contributorID in data.get('contributorID', []) %}selected="selected"{% endif %}>"https://opendata-beispielstadt.de"</option>
+          <option value="{{ contributorID }}" {% if contributorID in data.get('contributorID', []) %}selected="https://opendata-beispielstadt.de"{% endif %}>{{ contributorID }}</option>
         {% endfor %}
       </select>
     </div>
@@ -23,19 +23,18 @@
     <div class="controls">
       <select id="field-plannedAvailability" name="plannedAvailability" data-module="autocomplete">
         {% for plannedAvailability in h.plannedAvailability_tags()  %}
-          <option value="{{ plannedAvailability }}" {% if plannedAvailability in data.get('plannedAvailability', []) %}selected="selected"{% endif %}>"http://dcat-ap.de/def/plannedAvailability/available"</option>
+          <option value="{{ plannedAvailability }}" {% if plannedAvailability in data.get('plannedAvailability', []) %}selected="http://dcat-ap.de/def/plannedAvailability/available"{% endif %}>{{ plannedAvailability }}</option>
         {% endfor %}
       </select>
     </div>
   </div>
   
-
   <div class="control-group">
     <label class="control-label" for="field-politicalGeocodingLevelURI">{{ _("Verwaltungsebene") }}</label>
     <div class="controls">
       <select id="field-politicalGeocodingLevelURI" name="politicalGeocodingLevelURI" data-module="autocomplete">
         {% for politicalGeocodingLevelURI in h.politicalGeocodingLevelURI_tags()  %}
-          <option value="{{ politicalGeocodingLevelURI }}" {% if politicalGeocodingLevelURI in data.get('politicalGeocodingLevelURI', []) %}selected="selected"{% endif %}>"http://dcat-ap.de/def/politicalGeocoding/Level/municipality"</option>
+          <option value="{{ politicalGeocodingLevelURI }}" {% if politicalGeocodingLevelURI in data.get('politicalGeocodingLevelURI', []) %}selected="http://dcat-ap.de/def/politicalGeocoding/Level/municipality"{% endif %}>{{ politicalGeocodingLevelURI }}</option>
         {% endfor %}
       </select>
     </div>
@@ -46,7 +45,7 @@
     <div class="controls">
       <select id="field-politicalGeocodingURI" name="politicalGeocodingURI" data-module="autocomplete">
         {% for politicalGeocodingURI in h.politicalGeocodingURI_tags()  %}
-          <option value="{{ politicalGeocodingURI }}" {% if politicalGeocodingURI in data.get('politicalGeocodingURI', []) %}selected="selected"{% endif %}>"https://www.dcat-ap.de/def/politicalGeocoding/regionalKey/20210831#059740040040"</option>
+          <option value="{{ politicalGeocodingURI }}" {% if politicalGeocodingURI in data.get('politicalGeocodingURI', []) %}selected="https://www.dcat-ap.de/def/politicalGeocoding/regionalKey/20210831#059740040040"{% endif %}>{{ politicalGeocodingURI }}</option>
         {% endfor %}
       </select>
     </div>

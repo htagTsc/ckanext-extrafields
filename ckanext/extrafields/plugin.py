@@ -62,7 +62,7 @@ def create_licenseAttributionByText_tags():
     except toolkit.ObjectNotFound:
         data = {'name': 'licenseAttributionByText_tags'}
         vocab = toolkit.get_action('vocabulary_create')(context, data)
-        for tag in (u'  ', u'Die Daten wurden mit freundlicher Unterstützung der Beispielstadt bereitgestellt.'):
+        for tag in (u'Die Daten wurden mit freundlicher Unterstützung der Beispielstadt bereitgestellt.'):
             data = {'name': tag, 'vocabulary_id': vocab['id']}
             toolkit.get_action('tag_create')(context, data)
 
