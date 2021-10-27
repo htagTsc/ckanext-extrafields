@@ -3,12 +3,15 @@
 {% block package_metadata_fields %}
 
   {{ super() }}
-    {{ form.input('geocodingDescription', label=_('Fachlicher Geobezug'), id='field-geocodingDescription', value="Testwert", error=errors.geocodingDescription, classes=['control-medium']) }}
+    {{ form.input('geocodingDescription', label=_('Fachlicher Geobezug'), id='field-geocodingDescription', placeholder=_('Freitext: z.B. Wahlkreise der Stadt xy'), value=data.geocodingDescription, error=errors.geocodingDescription, classes=['control-medium']) }}
     {{ form.input('geometry', label=_('Geographische Ausdehnung'), id='field-geometry', placeholder=_('Optional als GeoJSON z.B.:{"type":"Polygon","coordinates":[[[10.3,53.3],[10.3,53.9],[8.4,53.9],[8.4,53.3],[10.3,53.3]]]}'), value=data.geometry, error=errors.geometry, classes=['control-medium']) }}
     {{ form.input('startDate', label=_('Startdatum Datensatz'), id='field-startDate', placeholder=_('Optional, Startdatum des Datensatzes: YYYY-MM-DDT00:00:00 z.B. 2021-03-23T12:00:00'), value=data.startDate, error=errors.startDate, classes=['control-medium']) }}
     {{ form.input('endDate', label=_('Enddatum Datensatz'), id='field-endDate', placeholder=_('Optional, Startdatum des Datensatzes: YYYY-MM-DDT00:00:00 z.B. 2021-05-30T23:59:59'), value=data.endDate, error=errors.endDate, classes=['control-medium']) }}
-
-
+    {{ form.input('contributorID', label=_('Datenbereitsteller ID'), id='field-contributorID', value="http://opendata-beispielstadt.de", error=errors.contributorID, classes=['control-medium']) }}
+    {{ form.input('plannedAvailability', label=_('Verfügbarkeitszeitsraum'), id='field-plannedAvailability', value="http://dcat-ap.de/def/plannedAvailability/available", error=errors.plannedAvailability, classes=['control-medium']) }}
+    {{ form.input('politicalGeocodingLevelURI', label=_('Verwaltungsebene'), id='field-politicalGeocodingLevelURI', value="http://dcat-ap.de/def/politicalGeocoding/Level/municipality", error=errors.politicalGeocodingLevelURI, classes=['control-medium']) }}
+    {{ form.input('politicalGeocodingURI', label=_('Gemeindeschlüssel'), id='field-politicalGeocodingURI', value="https://www.dcat-ap.de/def/politicalGeocoding/regionalKey/20210831#059740040040", error=errors.politicalGeocodingURI, classes=['control-medium']) }}
+    
   {# You could remove 'free extras' from the package form like this, but we keep them for this example's tests.
   {% block custom_fields %}
   {% endblock %}

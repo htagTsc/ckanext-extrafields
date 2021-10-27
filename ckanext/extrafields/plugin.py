@@ -22,6 +22,22 @@ class ExtrafieldsPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
             'geometry': [toolkit.get_validator('ignore_missing'),
                             toolkit.get_converter('convert_to_extras')]
         })
+        schema.update({
+            'contributorID': [toolkit.get_validator('ignore_missing'),
+                            toolkit.get_converter('convert_to_extras')]
+        })
+        schema.update({
+            'plannedAvailability': [toolkit.get_validator('ignore_missing'),
+                            toolkit.get_converter('convert_to_extras')]
+        })
+        schema.update({
+            'politicalGeocodingLevelURI': [toolkit.get_validator('ignore_missing'),
+                            toolkit.get_converter('convert_to_extras')]
+        })
+        schema.update({
+            'politicalGeocodingURI': [toolkit.get_validator('ignore_missing'),
+                            toolkit.get_converter('convert_to_extras')]
+        })
         return schema
 
     def create_package_schema(self):
@@ -51,6 +67,22 @@ class ExtrafieldsPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
             })
         schema.update({
             'geometry': [toolkit.get_converter('convert_from_extras'),
+                toolkit.get_validator('ignore_missing')]
+            })
+        schema.update({
+            'contributorID': [toolkit.get_converter('convert_from_extras'),
+                toolkit.get_validator('ignore_missing')]
+            })
+        schema.update({
+            'plannedAvailability': [toolkit.get_converter('convert_from_extras'),
+                toolkit.get_validator('ignore_missing')]
+            })
+        schema.update({
+            'politicalGeocodingLevelURI': [toolkit.get_converter('convert_from_extras'),
+                toolkit.get_validator('ignore_missing')]
+            })
+        schema.update({
+            'politicalGeocodingURI': [toolkit.get_converter('convert_from_extras'),
                 toolkit.get_validator('ignore_missing')]
             })
         return schema
