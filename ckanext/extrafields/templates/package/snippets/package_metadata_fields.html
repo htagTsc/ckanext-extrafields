@@ -12,7 +12,7 @@
     <div class="controls">
       <select id="field-contributorID" name="contributorID" data-module="autocomplete">
         {% for contributorID in h.contributorID_tags()  %}
-          <option value="{{ contributorID }}" {% if contributorID in data.get('contributorID', []) %}selected="https://opendata-beispielstadt.de"{% endif %}>{{ contributorID }}</option>
+          <option value="{{ contributorID }}" selected="selected"{% endif %}>"https://opendata-beispielstadt.de"</option>
         {% endfor %}
       </select>
     </div>
@@ -23,7 +23,7 @@
     <div class="controls">
       <select id="field-plannedAvailability" name="plannedAvailability" data-module="autocomplete">
         {% for plannedAvailability in h.plannedAvailability_tags()  %}
-          <option value="{{ plannedAvailability }}" {% if plannedAvailability in data.get('plannedAvailability', []) %}selected="http://dcat-ap.de/def/plannedAvailability/available"{% endif %}>{{ plannedAvailability }}</option>
+          <option value="{{ plannedAvailability }}" {% if plannedAvailability in data.get('plannedAvailability', []) %}selected="selected"{% endif %}>{{ plannedAvailability }}</option>
         {% endfor %}
       </select>
     </div>
@@ -34,7 +34,7 @@
     <div class="controls">
       <select id="field-politicalGeocodingLevelURI" name="politicalGeocodingLevelURI" data-module="autocomplete">
         {% for politicalGeocodingLevelURI in h.politicalGeocodingLevelURI_tags()  %}
-          <option value="{{ politicalGeocodingLevelURI }}" {% if politicalGeocodingLevelURI in data.get('politicalGeocodingLevelURI', []) %}selected="http://dcat-ap.de/def/politicalGeocoding/Level/municipality"{% endif %}>{{ politicalGeocodingLevelURI }}</option>
+          <option value="{{ politicalGeocodingLevelURI }}" {% if politicalGeocodingLevelURI in data.get('politicalGeocodingLevelURI', []) %}selected="selected"{% endif %}>{{ politicalGeocodingLevelURI }}</option>
         {% endfor %}
       </select>
     </div>
@@ -45,7 +45,7 @@
     <div class="controls">
       <select id="field-politicalGeocodingURI" name="politicalGeocodingURI" data-module="autocomplete">
         {% for politicalGeocodingURI in h.politicalGeocodingURI_tags()  %}
-          <option value="{{ politicalGeocodingURI }}" {% if politicalGeocodingURI in data.get('politicalGeocodingURI', []) %}selected="https://www.dcat-ap.de/def/politicalGeocoding/regionalKey/20210831#059740040040"{% endif %}>{{ politicalGeocodingURI }}</option>
+          <option value="{{ politicalGeocodingURI }}" {% if politicalGeocodingURI in data.get('politicalGeocodingURI', []) %}selected="selected"{% endif %}>{{ politicalGeocodingURI }}</option>
         {% endfor %}
       </select>
     </div>
@@ -63,9 +63,9 @@
   </div>
 
   {{ super() }}
-  {{ form.input('geocodingDescription', label=_('Fachlicher Geobezug'), id='field-geocodingDescription', placeholder=_('Freitext: z.B. Wahlkreise der Stadt xy'), value=data.geocodingDescription, error=errors.geocodingDescription, classes=['control-medium']) }}
-  {{ form.input('geometry', label=_('Geographische Ausdehnung'), id='field-geometry', placeholder=_('Optional als GeoJSON z.B.:{"type":"Polygon","coordinates":[[[10.3,53.3],[10.3,53.9],[8.4,53.9],[8.4,53.3],[10.3,53.3]]]}'), value=data.geometry, error=errors.geometry, classes=['control-medium']) }}
-  {{ form.input('startDate', label=_('Startdatum Datensatz'), id='field-startDate', placeholder=_('Optional, Startdatum des Datensatzes: YYYY-MM-DDT00:00:00 z.B. 2021-03-23T12:00:00'), value=data.startDate, error=errors.startDate, classes=['control-medium']) }}
-  {{ form.input('endDate', label=_('Enddatum Datensatz'), id='field-endDate', placeholder=_('Optional, Startdatum des Datensatzes: YYYY-MM-DDT00:00:00 z.B. 2021-05-30T23:59:59'), value=data.endDate, error=errors.endDate, classes=['control-medium']) }}
+    {{ form.input('geocodingDescription', label=_('Fachlicher Geobezug'), id='field-geocodingDescription', placeholder=_('Freitext: z.B. Wahlkreise der Stadt xy'), value=data.geocodingDescription, error=errors.geocodingDescription, classes=['control-medium']) }}
+    {{ form.input('geometry', label=_('Geographische Ausdehnung'), id='field-geometry', placeholder=_('Optional als GeoJSON z.B.:{"type":"Polygon","coordinates":[[[10.3,53.3],[10.3,53.9],[8.4,53.9],[8.4,53.3],[10.3,53.3]]]}'), value=data.geometry, error=errors.geometry, classes=['control-medium']) }}
+    {{ form.input('startDate', label=_('Startdatum Datensatz'), id='field-startDate', placeholder=_('Optional, Startdatum des Datensatzes: YYYY-MM-DDT00:00:00 z.B. 2021-03-23T12:00:00'), value=data.startDate, error=errors.startDate, classes=['control-medium']) }}
+    {{ form.input('endDate', label=_('Enddatum Datensatz'), id='field-endDate', placeholder=_('Optional, Startdatum des Datensatzes: YYYY-MM-DDT00:00:00 z.B. 2021-05-30T23:59:59'), value=data.endDate, error=errors.endDate, classes=['control-medium']) }}
 
 {% endblock %}
