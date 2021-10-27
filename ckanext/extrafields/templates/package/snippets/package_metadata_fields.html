@@ -12,7 +12,7 @@
     <div class="controls">
       <select id="field-contributorID" name="contributorID" data-module="autocomplete">
         {% for contributorID in h.contributorID_tags()  %}
-          <option value="{{ contributorID }}" selected="selected"{% endif %}>"https://opendata-beispielstadt.de"</option>
+          <option value="{{ contributorID }}" selected="selected">"https://opendata-beispielstadt.de"</option>
         {% endfor %}
       </select>
     </div>
@@ -23,7 +23,7 @@
     <div class="controls">
       <select id="field-plannedAvailability" name="plannedAvailability" data-module="autocomplete">
         {% for plannedAvailability in h.plannedAvailability_tags()  %}
-          <option value="{{ plannedAvailability }}" {% if plannedAvailability in data.get('plannedAvailability', []) %}selected="selected"{% endif %}>{{ plannedAvailability }}</option>
+          <option value="http://dcat-ap.de/def/plannedAvailability/available" selected="selected">{{ plannedAvailability }}</option>
         {% endfor %}
       </select>
     </div>
