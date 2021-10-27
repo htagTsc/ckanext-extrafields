@@ -10,7 +10,7 @@ def create_contributorID_tags():
     except toolkit.ObjectNotFound:
         data = {'name': 'contributorID_tags'}
         vocab = toolkit.get_action('vocabulary_create')(context, data)
-        for tag in (u'Beispielstadt ID'):
+        for tag in (u'Beispielstadt ID', u'  '):
             data = {'name': tag, 'vocabulary_id': vocab['id']}
             toolkit.get_action('tag_create')(context, data)
 
@@ -23,7 +23,7 @@ def create_politicalGeocodingURI_tags():
     except toolkit.ObjectNotFound:
         data = {'name': 'politicalGeocodingURI_tags'}
         vocab = toolkit.get_action('vocabulary_create')(context, data)
-        for tag in (u'Beispielstadt'):
+        for tag in (u'Beispielstadt', u'  '):
             data = {'name': tag, 'vocabulary_id': vocab['id']}
             toolkit.get_action('tag_create')(context, data)
 
@@ -36,7 +36,7 @@ def create_plannedAvailability_tags():
     except toolkit.ObjectNotFound:
         data = {'name': 'plannedAvailability_tags'}
         vocab = toolkit.get_action('vocabulary_create')(context, data)
-        for tag in (u'Verfügbar'):
+        for tag in (u'Verfügbar', u'  '):
             data = {'name': tag, 'vocabulary_id': vocab['id']}
             toolkit.get_action('tag_create')(context, data)
 
@@ -49,7 +49,7 @@ def create_politicalGeocodingLevelURI_tags():
     except toolkit.ObjectNotFound:
         data = {'name': 'politicalGeocodingLevelURI_tags'}
         vocab = toolkit.get_action('vocabulary_create')(context, data)
-        for tag in (u'Kommune'):
+        for tag in (u'Kommune', u'  '):
             data = {'name': tag, 'vocabulary_id': vocab['id']}
             toolkit.get_action('tag_create')(context, data)
 
@@ -62,7 +62,7 @@ def create_licenseAttributionByText_tags():
     except toolkit.ObjectNotFound:
         data = {'name': 'licenseAttributionByText_tags'}
         vocab = toolkit.get_action('vocabulary_create')(context, data)
-        for tag in (u'Die Daten wurden mit freundlicher Unterstützung der Beispielstadt bereitgestellt.'):
+        for tag in (u'Die Daten wurden mit freundlicher Unterstützung der Beispielstadt bereitgestellt.', u'  '):
             data = {'name': tag, 'vocabulary_id': vocab['id']}
             toolkit.get_action('tag_create')(context, data)
 
